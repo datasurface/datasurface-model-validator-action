@@ -1,0 +1,23 @@
+name: 'DataSurface Model Validator'
+description: 'Validate DataSurface ecosystem model changes in pull requests'
+author: 'DataSurface'
+branding:
+  icon: 'shield'
+  color: 'blue'
+
+inputs:
+  version:
+    description: 'DataSurface image version to use (e.g., latest, v1.2.3, main)'
+    required: false
+    default: 'latest'
+  main-branch:
+    description: 'Main branch to compare against'
+    required: false
+    default: 'main'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    DATASURFACE_VERSION: ${{ inputs.version }}
+    MAIN_BRANCH: ${{ inputs.main-branch }} 
